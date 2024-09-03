@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class UserRequest {
     @NotBlank(message = "")
     private String firstname;
@@ -18,5 +17,6 @@ public class UserRequest {
     private String password;
     @NotBlank
     private String address;
-
+    @NotBlank
+    private String username;
 }

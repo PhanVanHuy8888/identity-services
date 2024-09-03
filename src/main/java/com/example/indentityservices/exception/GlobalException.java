@@ -27,12 +27,12 @@ public class GlobalException {
                 .message(errorCode.getMessage())
                 .build();
     }
-
-    @ExceptionHandler(value = RuntimeException.class)
-    ResponseData handlingRuntimeException(RuntimeException e) {
-        return ResponseData.builder()
-                .status(HttpStatus.NOT_FOUND.value())
-                .message("User not found")
-                .build();
-    }
+//
+//    @ExceptionHandler(value = RuntimeException.class)
+//    ResponseData handlingRuntimeException(RuntimeException e) {
+//        return ResponseData.builder()
+//                .status(HttpStatus.NOT_FOUND.value())
+//                .message("User not found 1111")
+//                .build();
+//    }
 }

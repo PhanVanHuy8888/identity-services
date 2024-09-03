@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class UserUpdateRequest {
     private Long id;
 
@@ -13,5 +12,6 @@ public class UserUpdateRequest {
     private String email;
     private String password;
     private String address;
+    private String username;
 
 }

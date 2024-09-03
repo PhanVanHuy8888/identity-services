@@ -14,4 +14,6 @@ public class UserResponse {
     private String lastname;
     private String email;
     private String address;
+    private String username;
+
 }

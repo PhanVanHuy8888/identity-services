@@ -3,13 +3,17 @@ package com.example.indentityservices.controller;
 import com.example.indentityservices.dto.request.UserRequest;
 import com.example.indentityservices.dto.request.UserUpdateRequest;
 import com.example.indentityservices.dto.response.ResponseData;
+import com.example.indentityservices.dto.response.ResultPagination;
 import com.example.indentityservices.dto.response.UserResponse;
 
 
 import com.example.indentityservices.model.User;
 import com.example.indentityservices.service.UserService;
+import com.turkraft.springfilter.boot.Filter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +36,9 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-    public ResponseData<List<UserResponse>> getAll() {
-        return ResponseData.<List<UserResponse>>builder()
-                .status(HttpStatus.OK.value())
-                .message("Get-All-User")
-                .data(userService.getAll())
-                .build();
+    public ResponseData<ResultPagination> getAll(@Filter Specification<User> spec, Pageable pageable) {
+        return new ResponseData<>(HttpStatus.OK.value(), "Get-All-User", userService.getAll(spec, pageable));
+
     }
 
     @DeleteMapping("/deleteUser/{id}")
@@ -63,4 +64,9 @@ public class UserController {
                 .build();
     }
 
+    @DeleteMapping("/deleteAll")
+    public String deleteAllUser() {
+        userService.deleteAllUser();
+        return "Delete-All-User-Successfully";
+    }
 }
